@@ -15,12 +15,12 @@ namespace AcademyWinForms
             comboBox1.Items.Add("4.Вывести названия групп, у которых больше одного куратора.");
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void  comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i  = comboBox1.SelectedIndex;
 
 
-            List<string>grpName= MyController.Task4();///+async
+            IEnumerable<string> grpName=await MyController.Task4Async();///+async
             listBox1.Items.Clear();
             listBox1.Items.AddRange(grpName.ToArray());
 

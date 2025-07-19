@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace ExamAcademy.Controller
 {
-    public static  class MyController
+    public static   class MyController
     {
         //4.Вывести названия групп, у которых больше одного куратора.
 
-        public static List<string> Task4()
+        public static async Task<IEnumerable<string>> Task4Async()
         {
             //EfCore
 
@@ -44,12 +44,12 @@ namespace ExamAcademy.Controller
 
                 //Dapper storage
                 var query = "EXEC GroupManyCurators";
-                var grp = connection.Query<Groups>(query).Select(g=>g.Name).ToList();
-                //foreach (var item in grp)
-                //{
-                //    Console.WriteLine(item.Name);
-                //}
-                return grp;
+                var grp = await connection.QueryAsync<Groups>(query);
+                    
+                    
+                 var result= grp.Select(g=>g.Name);
+                
+                return result;
             }
         }
     }
